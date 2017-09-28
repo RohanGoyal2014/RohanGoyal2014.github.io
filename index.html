@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+    <head>
+        <title>
+            Rohan Goyal's page
+        </title>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+         <link rel="shortcut icon" type="image/x-icon" href="images/icon.jpg" />
+    </head>
+    <body>
+        <canvas id="mycanvas"></canvas>
+        <script>
+
+            function render()
+            {
+
+            }
+            var canvas=document.getElementById('mycanvas');
+            canvas.width=$(window).innerWidth();
+            canvas.height=$(window).innerHeight()
+            var ctx=canvas.getContext('2d');
+            var xhead=500;
+            window.addEventListener('keydown',whatKey,true);
+            implementor();
+            function plotBaseLine()
+            {
+                ctx.moveTo(0,canvas.height*0.8);
+                ctx.lineTo(canvas.width,canvas.height*0.8);
+                ctx.stroke();
+            }
+            function plotRect(x,y,h,w,color,xheader)
+            {
+                ctx.fillStyle=color;
+                ctx.fillRect(x,y,h,w);
+                xheader+=h;
+                return xheader;
+            }
+            function whatKey(e) {
+                switch(e.keyCode)
+                {
+                    case 37:
+                        //context.clearRect(0, 0, canvas.width, canvas.height);
+                        console.log("Huii");
+                        implementor();
+                        break;
+                    case 39:
+                        //context.clearRect(0, 0, canvas.width, canvas.height);
+                        console.log("awwlelele");
+                        implementor();
+                        break;
+                    case 40:
+                        //avatarY = avatarY + 10;
+                        break;
+                    case 38:
+                        //avatarY = avatarY - 10;
+                        break;
+                }
+            }
+            function implementor()
+            {
+                plotBaseLine();
+                var y=canvas.height*0.8;
+                xhead=plotRect(xhead,y-100,100,100,"green",xhead);
+                xhead=plotRect(xhead,y-200,100,200,"black",xhead);
+                xhead=plotRect(xhead,y-300,150,300,"orange",xhead);
+                xhead=plotRect(xhead,y-400,100,400,"maroon",xhead);
+
+                xhead=plotRect(xhead,y-100,100,100,"green",xhead);
+                xhead=plotRect(xhead,y-200,100,200,"black",xhead);
+                xhead=plotRect(xhead,y-300,150,300,"orange",xhead);
+                xhead=plotRect(xhead,y-400,100,400,"maroon",xhead);
+
+                xhead=plotRect(xhead,y-100,100,100,"green",xhead);
+                xhead=plotRect(xhead,y-200,100,200,"black",xhead);
+                xhead=plotRect(xhead,y-300,150,300,"orange",xhead);
+                xhead=plotRect(xhead,y-400,100,400,"maroon",xhead);
+
+                xhead=plotRect(xhead,y-100,100,100,"green",xhead);
+                xhead=plotRect(xhead,y-200,100,200,"black",xhead);
+                xhead=plotRect(xhead,y-300,150,300,"orange",xhead);
+                xhead=plotRect(xhead,y-400,100,400,"maroon",xhead);
+
+                xhead=plotRect(xhead,y-100,100,100,"green",xhead);
+                xhead=plotRect(xhead,y-200,100,200,"black",xhead);
+                xhead=plotRect(xhead,y-300,150,300,"orange",xhead);
+                xhead=plotRect(xhead,y-400,100,400,"maroon",xhead);
+
+                xhead=plotRect(xhead,y-100,100,100,"green",xhead);
+                xhead=plotRect(xhead,y-200,100,200,"black",xhead);
+                xhead=plotRect(xhead,y-300,150,300,"orange",xhead);
+                xhead=plotRect(xhead,y-400,100,400,"maroon",xhead);
+
+                xhead=plotRect(xhead,y-100,100,100,"green",xhead);
+                xhead=plotRect(xhead,y-200,100,200,"black",xhead);
+                xhead=plotRect(xhead,y-300,150,300,"orange",xhead);
+                xhead=plotRect(xhead,y-400,100,400,"maroon",xhead);
+
+                xhead=plotRect(xhead,y-100,100,100,"green",xhead);
+                xhead=plotRect(xhead,y-200,100,200,"black",xhead);
+                xhead=plotRect(xhead,y-300,150,300,"orange",xhead);
+                xhead=plotRect(xhead,y-400,100,400,"maroon",xhead);
+
+                xhead=plotRect(xhead,y-100,100,100,"green",xhead);
+                xhead=plotRect(xhead,y-200,100,200,"black",xhead);
+                xhead=plotRect(xhead,y-300,150,300,"orange",xhead);
+                xhead=plotRect(xhead,y-400,100,400,"maroon",xhead);
+
+                xhead=plotRect(xhead,y-100,100,100,"green",xhead);
+                xhead=plotRect(xhead,y-200,100,200,"black",xhead);
+                xhead=plotRect(xhead,y-300,150,300,"orange",xhead);
+                xhead=plotRect(xhead,y-400,100,400,"maroon",xhead);
+
+                xhead=plotRect(xhead,y-100,100,100,"green",xhead);
+                xhead=plotRect(xhead,y-200,100,200,"black",xhead);
+                xhead=plotRect(xhead,y-300,150,300,"orange",xhead);
+                xhead=plotRect(xhead,y-400,100,400,"maroon",xhead);
+
+                xhead=plotRect(xhead,y-100,100,100,"green",xhead);
+                xhead=plotRect(xhead,y-200,100,200,"black",xhead);
+                xhead=plotRect(xhead,y-300,150,300,"orange",xhead);
+                xhead=plotRect(xhead,y-400,100,400,"maroon",xhead);
+
+                xhead=plotRect(xhead,y-100,100,100,"green",xhead);
+                xhead=plotRect(xhead,y-200,100,200,"black",xhead);
+                xhead=plotRect(xhead,y-300,150,300,"orange",xhead);
+                xhead=plotRect(xhead,y-400,100,400,"maroon",xhead);
+            }
+        </script>
+    </body>
+</html>
+<style>
+#mycanvas
+{
+    background:#C0C0C0;
+    left:0;
+    top:0;
+    position: fixed;
+}
+</style>
