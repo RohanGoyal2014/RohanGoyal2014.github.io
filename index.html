@@ -7,10 +7,12 @@
          <link rel="shortcut icon" type="image/x-icon" href="images/icon.jpg" />
     </head>
     <body>
-
         <canvas id="mycanvas"></canvas>
         <script>
             $( document ).ready(function() {
+                    $("body").on("contextmenu",function(e){
+                    return false;
+            });
                 var snd = new Audio("sounds/start.mp3");
                 snd.addEventListener('ended',function(){
                     var restsnd=new Audio('sounds/accelerate.mp3');
@@ -21,7 +23,7 @@
                     },false);
                     restsnd.play();
                 },false);
-                snd.play();
+                //snd.play();
             });
             var xhead={seed:500};
             var load={statuscar:false,statusline:false};
@@ -37,17 +39,24 @@
             {
                 var base_image = new Image();
                 base_image.src = 'images/linepath/grass.png';
+                var road_image=new Image();
+                road_image.src = 'images/linepath/road.jpg';
                 if(load.statusline==false)
                 {
                     base_image.onload = function()
                     {
                         ctx.drawImage(base_image, -200,0.8*canvas.height-90,1.5*canvas.width,120);
                     }
+                    road_image.onload = function()
+                    {
+                        ctx.drawImage(road_image, 0,0.8*canvas.height,canvas.width,0.2*canvas.height);
+                    }
                     load.statusline=true;
                 }
                 else
                 {
                     ctx.drawImage(base_image, -200,0.8*canvas.height-90,1.5*canvas.width,120);
+                    ctx.drawImage(road_image, 0,0.8*canvas.height,canvas.width,0.2*canvas.height);
                 }
             }
             function plotRect(x,y,h,w,color,xheader)
@@ -65,13 +74,13 @@
               {
                   base_image.onload = function()
                   {
-                      ctx.drawImage(base_image, 50,0.95*canvas.height-110,300,120);
+                      ctx.drawImage(base_image, 150,0.95*canvas.height-80,300,120);
                   }
                   load.statuscar=true;
               }
               else
               {
-                  ctx.drawImage(base_image, 50,0.95*canvas.height-110,300,120);
+                  ctx.drawImage(base_image, 250,0.95*canvas.height-80,300,120);
               }
             }
             function whatKey(e) {
@@ -146,8 +155,8 @@
                 xhead=plotRect(xhead.seed,y-100,100,100,"green",xhead);
                 xhead=plotRect(xhead.seed,y-200,100,200,"black",xhead);
                 xhead=plotRect(xhead.seed,y-300,150,300,"orange",xhead);
-                xhead=plotRect(xhead.seed,y-400,100,400,"maroon",xhead);
 
+                xhead=plotRect(xhead.seed,y-400,100,400,"maroon",xhead);
                 xhead=plotRect(xhead.seed,y-100,100,100,"green",xhead);
                 xhead=plotRect(xhead.seed,y-200,100,200,"black",xhead);
                 xhead=plotRect(xhead.seed,y-300,150,300,"orange",xhead);
