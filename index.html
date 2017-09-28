@@ -9,17 +9,13 @@
     <body>
         <canvas id="mycanvas"></canvas>
         <script>
-
-            function render()
-            {
-
-            }
+            var xhead={seed:500};
             var canvas=document.getElementById('mycanvas');
             canvas.width=$(window).innerWidth();
             canvas.height=$(window).innerHeight()
             var ctx=canvas.getContext('2d');
-            var xhead=500;
             window.addEventListener('keydown',whatKey,true);
+            var initiator={init:500};
             implementor();
             function plotBaseLine()
             {
@@ -31,98 +27,109 @@
             {
                 ctx.fillStyle=color;
                 ctx.fillRect(x,y,h,w);
-                xheader+=h;
+                xheader.seed+=h;
                 return xheader;
             }
             function whatKey(e) {
                 switch(e.keyCode)
                 {
                     case 37:
-                        //context.clearRect(0, 0, canvas.width, canvas.height);
-                        console.log("Huii");
+                        if(initiator.init<500)
+                        {
+                            initiator.init+=3;
+                        }
+                        xhead.seed=initiator.init;
                         implementor();
                         break;
                     case 39:
-                        //context.clearRect(0, 0, canvas.width, canvas.height);
-                        console.log("awwlelele");
+                        initiator.init-=3;
+                        xhead.seed=initiator.init;
                         implementor();
                         break;
                     case 40:
-                        //avatarY = avatarY + 10;
+                        if(initiator.init<500)
+                        {
+                            initiator.init+=3;
+                        }
+                        xhead.seed=initiator.init;
+                        implementor();
                         break;
                     case 38:
-                        //avatarY = avatarY - 10;
+                        initiator.init-=3;
+                        xhead.seed=initiator.init;
+                        implementor();
                         break;
                 }
             }
             function implementor()
             {
+                ctx.clearRect(0,0,canvas.width,canvas.height);
                 plotBaseLine();
                 var y=canvas.height*0.8;
-                xhead=plotRect(xhead,y-100,100,100,"green",xhead);
-                xhead=plotRect(xhead,y-200,100,200,"black",xhead);
-                xhead=plotRect(xhead,y-300,150,300,"orange",xhead);
-                xhead=plotRect(xhead,y-400,100,400,"maroon",xhead);
+                xhead=plotRect(xhead.seed,y-100,100,100,"green",xhead);
+                xhead=plotRect(xhead.seed,y-200,100,200,"black",xhead);
+                xhead=plotRect(xhead.seed,y-300,150,300,"orange",xhead);
+                xhead=plotRect(xhead.seed,y-400,100,400,"maroon",xhead);
 
-                xhead=plotRect(xhead,y-100,100,100,"green",xhead);
-                xhead=plotRect(xhead,y-200,100,200,"black",xhead);
-                xhead=plotRect(xhead,y-300,150,300,"orange",xhead);
-                xhead=plotRect(xhead,y-400,100,400,"maroon",xhead);
+                xhead=plotRect(xhead.seed,y-100,100,100,"green",xhead);
+                xhead=plotRect(xhead.seed,y-200,100,200,"black",xhead);
+                xhead=plotRect(xhead.seed,y-300,150,300,"orange",xhead);
+                xhead=plotRect(xhead.seed,y-400,100,400,"maroon",xhead);
 
-                xhead=plotRect(xhead,y-100,100,100,"green",xhead);
-                xhead=plotRect(xhead,y-200,100,200,"black",xhead);
-                xhead=plotRect(xhead,y-300,150,300,"orange",xhead);
-                xhead=plotRect(xhead,y-400,100,400,"maroon",xhead);
+                xhead=plotRect(xhead.seed,y-100,100,100,"green",xhead);
+                xhead=plotRect(xhead.seed,y-200,100,200,"black",xhead);
+                xhead=plotRect(xhead.seed,y-300,150,300,"orange",xhead);
+                xhead=plotRect(xhead.seed,y-400,100,400,"maroon",xhead);
 
-                xhead=plotRect(xhead,y-100,100,100,"green",xhead);
-                xhead=plotRect(xhead,y-200,100,200,"black",xhead);
-                xhead=plotRect(xhead,y-300,150,300,"orange",xhead);
-                xhead=plotRect(xhead,y-400,100,400,"maroon",xhead);
+                xhead=plotRect(xhead.seed,y-100,100,100,"green",xhead);
+                xhead=plotRect(xhead.seed,y-200,100,200,"black",xhead);
+                xhead=plotRect(xhead.seed,y-300,150,300,"orange",xhead);
+                xhead=plotRect(xhead.seed,y-400,100,400,"maroon",xhead);
 
-                xhead=plotRect(xhead,y-100,100,100,"green",xhead);
-                xhead=plotRect(xhead,y-200,100,200,"black",xhead);
-                xhead=plotRect(xhead,y-300,150,300,"orange",xhead);
-                xhead=plotRect(xhead,y-400,100,400,"maroon",xhead);
+                xhead=plotRect(xhead.seed,y-100,100,100,"green",xhead);
+                xhead=plotRect(xhead.seed,y-200,100,200,"black",xhead);
+                xhead=plotRect(xhead.seed,y-300,150,300,"orange",xhead);
+                xhead=plotRect(xhead.seed,y-400,100,400,"maroon",xhead);
 
-                xhead=plotRect(xhead,y-100,100,100,"green",xhead);
-                xhead=plotRect(xhead,y-200,100,200,"black",xhead);
-                xhead=plotRect(xhead,y-300,150,300,"orange",xhead);
-                xhead=plotRect(xhead,y-400,100,400,"maroon",xhead);
+                xhead=plotRect(xhead.seed,y-100,100,100,"green",xhead);
+                xhead=plotRect(xhead.seed,y-200,100,200,"black",xhead);
+                xhead=plotRect(xhead.seed,y-300,150,300,"orange",xhead);
+                xhead=plotRect(xhead.seed,y-400,100,400,"maroon",xhead);
 
-                xhead=plotRect(xhead,y-100,100,100,"green",xhead);
-                xhead=plotRect(xhead,y-200,100,200,"black",xhead);
-                xhead=plotRect(xhead,y-300,150,300,"orange",xhead);
-                xhead=plotRect(xhead,y-400,100,400,"maroon",xhead);
+                xhead=plotRect(xhead.seed,y-100,100,100,"green",xhead);
+                xhead=plotRect(xhead.seed,y-200,100,200,"black",xhead);
+                xhead=plotRect(xhead.seed,y-300,150,300,"orange",xhead);
+                xhead=plotRect(xhead.seed,y-400,100,400,"maroon",xhead);
 
-                xhead=plotRect(xhead,y-100,100,100,"green",xhead);
-                xhead=plotRect(xhead,y-200,100,200,"black",xhead);
-                xhead=plotRect(xhead,y-300,150,300,"orange",xhead);
-                xhead=plotRect(xhead,y-400,100,400,"maroon",xhead);
+                xhead=plotRect(xhead.seed,y-100,100,100,"green",xhead);
+                xhead=plotRect(xhead.seed,y-200,100,200,"black",xhead);
+                xhead=plotRect(xhead.seed,y-300,150,300,"orange",xhead);
+                xhead=plotRect(xhead.seed,y-400,100,400,"maroon",xhead);
 
-                xhead=plotRect(xhead,y-100,100,100,"green",xhead);
-                xhead=plotRect(xhead,y-200,100,200,"black",xhead);
-                xhead=plotRect(xhead,y-300,150,300,"orange",xhead);
-                xhead=plotRect(xhead,y-400,100,400,"maroon",xhead);
+                xhead=plotRect(xhead.seed,y-100,100,100,"green",xhead);
+                xhead=plotRect(xhead.seed,y-200,100,200,"black",xhead);
+                xhead=plotRect(xhead.seed,y-300,150,300,"orange",xhead);
+                xhead=plotRect(xhead.seed,y-400,100,400,"maroon",xhead);
 
-                xhead=plotRect(xhead,y-100,100,100,"green",xhead);
-                xhead=plotRect(xhead,y-200,100,200,"black",xhead);
-                xhead=plotRect(xhead,y-300,150,300,"orange",xhead);
-                xhead=plotRect(xhead,y-400,100,400,"maroon",xhead);
+                xhead=plotRect(xhead.seed,y-100,100,100,"green",xhead);
+                xhead=plotRect(xhead.seed,y-200,100,200,"black",xhead);
+                xhead=plotRect(xhead.seed,y-300,150,300,"orange",xhead);
+                xhead=plotRect(xhead.seed,y-400,100,400,"maroon",xhead);
 
-                xhead=plotRect(xhead,y-100,100,100,"green",xhead);
-                xhead=plotRect(xhead,y-200,100,200,"black",xhead);
-                xhead=plotRect(xhead,y-300,150,300,"orange",xhead);
-                xhead=plotRect(xhead,y-400,100,400,"maroon",xhead);
+                xhead=plotRect(xhead.seed,y-100,100,100,"green",xhead);
+                xhead=plotRect(xhead.seed,y-200,100,200,"black",xhead);
+                xhead=plotRect(xhead.seed,y-300,150,300,"orange",xhead);
+                xhead=plotRect(xhead.seed,y-400,100,400,"maroon",xhead);
 
-                xhead=plotRect(xhead,y-100,100,100,"green",xhead);
-                xhead=plotRect(xhead,y-200,100,200,"black",xhead);
-                xhead=plotRect(xhead,y-300,150,300,"orange",xhead);
-                xhead=plotRect(xhead,y-400,100,400,"maroon",xhead);
+                xhead=plotRect(xhead.seed,y-100,100,100,"green",xhead);
+                xhead=plotRect(xhead.seed,y-200,100,200,"black",xhead);
+                xhead=plotRect(xhead.seed,y-300,150,300,"orange",xhead);
+                xhead=plotRect(xhead.seed,y-400,100,400,"maroon",xhead);
 
-                xhead=plotRect(xhead,y-100,100,100,"green",xhead);
-                xhead=plotRect(xhead,y-200,100,200,"black",xhead);
-                xhead=plotRect(xhead,y-300,150,300,"orange",xhead);
-                xhead=plotRect(xhead,y-400,100,400,"maroon",xhead);
+                xhead=plotRect(xhead.seed,y-100,100,100,"green",xhead);
+                xhead=plotRect(xhead.seed,y-200,100,200,"black",xhead);
+                xhead=plotRect(xhead.seed,y-300,150,300,"orange",xhead);
+                xhead=plotRect(xhead.seed,y-400,100,400,"maroon",xhead);
             }
         </script>
     </body>
