@@ -7,9 +7,23 @@
          <link rel="shortcut icon" type="image/x-icon" href="images/icon.jpg" />
     </head>
     <body>
+
         <canvas id="mycanvas"></canvas>
         <script>
+            $( document ).ready(function() {
+                var snd = new Audio("sounds/start.mp3");
+                snd.addEventListener('ended',function(){
+                    var restsnd=new Audio('sounds/accelerate.mp3');
+                    restsnd.addEventListener('ended',function(){
+                        this.currentTime=0;
+                        this.play();
+                    },false);
+                    restsnd.play();
+                },false);
+                snd.play();
+            });
             var xhead={seed:500};
+            var load={statuscar:false,statusline:false};
             var canvas=document.getElementById('mycanvas');
             canvas.width=$(window).innerWidth();
             canvas.height=$(window).innerHeight()
@@ -17,11 +31,23 @@
             window.addEventListener('keydown',whatKey,true);
             var initiator={init:500};
             implementor();
+            make_base();
             function plotBaseLine()
             {
-                ctx.moveTo(0,canvas.height*0.8);
-                ctx.lineTo(canvas.width,canvas.height*0.8);
-                ctx.stroke();
+                var base_image = new Image();
+                base_image.src = 'images/linepath/grass.png';
+                if(load.statusline==false)
+                {
+                    base_image.onload = function()
+                    {
+                        ctx.drawImage(base_image, -200,0.8*canvas.height-90,1.5*canvas.width,120);
+                    }
+                    load.statusline=true;
+                }
+                else
+                {
+                    ctx.drawImage(base_image, -200,0.8*canvas.height-90,1.5*canvas.width,120);
+                }
             }
             function plotRect(x,y,h,w,color,xheader)
             {
@@ -30,41 +56,61 @@
                 xheader.seed+=h;
                 return xheader;
             }
+            function make_base()
+            {
+              var base_image = new Image();
+              base_image.src = 'images/linepath/car.png';
+              if(load.statuscar==false)
+              {
+                  base_image.onload = function()
+                  {
+                      ctx.drawImage(base_image, 50,0.95*canvas.height-110,300,120);
+                  }
+                  load.statuscar=true;
+              }
+              else
+              {
+                  ctx.drawImage(base_image, 50,0.95*canvas.height-110,300,120);
+              }
+            }
             function whatKey(e) {
                 switch(e.keyCode)
                 {
                     case 37:
                         if(initiator.init<500)
                         {
-                            initiator.init+=3;
+                            initiator.init+=5;
                         }
                         xhead.seed=initiator.init;
                         implementor();
+                        make_base();
                         break;
                     case 39:
-                        initiator.init-=3;
+                        initiator.init-=10;
                         xhead.seed=initiator.init;
                         implementor();
+                        make_base();
                         break;
                     case 40:
                         if(initiator.init<500)
                         {
-                            initiator.init+=3;
+                            initiator.init+=5;
                         }
                         xhead.seed=initiator.init;
                         implementor();
+                        make_base();
                         break;
                     case 38:
-                        initiator.init-=3;
+                        initiator.init-=10;
                         xhead.seed=initiator.init;
                         implementor();
+                        make_base();
                         break;
                 }
             }
             function implementor()
             {
                 ctx.clearRect(0,0,canvas.width,canvas.height);
-                plotBaseLine();
                 var y=canvas.height*0.8;
                 xhead=plotRect(xhead.seed,y-100,100,100,"green",xhead);
                 xhead=plotRect(xhead.seed,y-200,100,200,"black",xhead);
@@ -130,6 +176,7 @@
                 xhead=plotRect(xhead.seed,y-200,100,200,"black",xhead);
                 xhead=plotRect(xhead.seed,y-300,150,300,"orange",xhead);
                 xhead=plotRect(xhead.seed,y-400,100,400,"maroon",xhead);
+                plotBaseLine();
             }
         </script>
     </body>
@@ -137,9 +184,11 @@
 <style>
 #mycanvas
 {
-    background:#C0C0C0;
+    background:url('images/bg.jpg');
+    background-size: cover;
     left:0;
     top:0;
+    bottom:0;
     position: fixed;
 }
 </style>
