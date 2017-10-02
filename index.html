@@ -1,204 +1,175 @@
-<!DOCTYPE html>
-    <head>
-        <title>
-            Rohan Goyal's page
-        </title>
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-         <link rel="shortcut icon" type="image/x-icon" href="images/icon.jpg" />
-    </head>
-    <body>
-        <canvas id="mycanvas"></canvas>
-        <script>
-            $( document ).ready(function() {
-                    $("body").on("contextmenu",function(e){
-                    return false;
-            });
-                var snd = new Audio("sounds/start.mp3");
-                snd.addEventListener('ended',function(){
-                    var restsnd=new Audio('sounds/accelerate.mp3');
-                    restsnd.volume=0.4;
-                    restsnd.addEventListener('ended',function(){
-                        this.currentTime=0;
-                        this.play();
-                    },false);
-                    restsnd.play();
-                },false);
-                snd.play();
-            });
-            var xhead={seed:500};
-            var load={statuscar:false,statusline:false};
-            var canvas=document.getElementById('mycanvas');
-            canvas.width=$(window).innerWidth();
-            canvas.height=$(window).innerHeight()
-            var ctx=canvas.getContext('2d');
-            window.addEventListener('keydown',whatKey,true);
-            var initiator={init:500};
-            implementor();
-            make_base();
-            function plotBaseLine()
-            {
-                var base_image = new Image();
-                base_image.src = 'images/linepath/grass.png';
-                var road_image=new Image();
-                road_image.src = 'images/linepath/road.jpg';
-                if(load.statusline==false)
-                {
-                    base_image.onload = function()
-                    {
-                        ctx.drawImage(base_image, -200,0.8*canvas.height-90,1.5*canvas.width,120);
-                    }
-                    road_image.onload = function()
-                    {
-                        ctx.drawImage(road_image, 0,0.8*canvas.height,canvas.width,0.2*canvas.height);
-                    }
-                    load.statusline=true;
-                }
-                else
-                {
-                    ctx.drawImage(base_image, -200,0.8*canvas.height-90,1.5*canvas.width,120);
-                    ctx.drawImage(road_image, 0,0.8*canvas.height,canvas.width,0.2*canvas.height);
-                }
-            }
-            function plotRect(x,y,h,w,color,xheader)
-            {
-                ctx.fillStyle=color;
-                ctx.fillRect(x,y,h,w);
-                xheader.seed+=h;
-                return xheader;
-            }
-            function make_base()
-            {
-              var base_image = new Image();
-              base_image.src = 'images/linepath/car.png';
-              if(load.statuscar==false)
-              {
-                  base_image.onload = function()
-                  {
-                      ctx.drawImage(base_image, 150,0.95*canvas.height-80,300,120);
-                  }
-                  load.statuscar=true;
-              }
-              else
-              {
-                  ctx.drawImage(base_image, 250,0.95*canvas.height-80,300,120);
-              }
-            }
-            function whatKey(e) {
-                switch(e.keyCode)
-                {
-                    case 37:
-                        if(initiator.init<500)
-                        {
-                            initiator.init+=5;
-                        }
-                        xhead.seed=initiator.init;
-                        implementor();
-                        make_base();
-                        break;
-                    case 39:
-                        initiator.init-=10;
-                        xhead.seed=initiator.init;
-                        implementor();
-                        make_base();
-                        break;
-                    case 40:
-                        if(initiator.init<500)
-                        {
-                            initiator.init+=5;
-                        }
-                        xhead.seed=initiator.init;
-                        implementor();
-                        make_base();
-                        break;
-                    case 38:
-                        initiator.init-=10;
-                        xhead.seed=initiator.init;
-                        implementor();
-                        make_base();
-                        break;
-                }
-            }
-            function implementor()
-            {
-                ctx.clearRect(0,0,canvas.width,canvas.height);
-                var y=canvas.height*0.8;
-                xhead=plotRect(xhead.seed,y-100,100,100,"green",xhead);
-                xhead=plotRect(xhead.seed,y-200,100,200,"black",xhead);
-                xhead=plotRect(xhead.seed,y-300,150,300,"orange",xhead);
-                xhead=plotRect(xhead.seed,y-400,100,400,"maroon",xhead);
+ <!DOCTYPE html>
+     <head>
+          <link rel="shortcut icon" type="image/x-icon" href="images/logomain.png" />
+          <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+         <style>
+         body{background-color:#161719;text-align:center;overflow-x:hidden;}
+ .collage_container{
+   display:inline-block;
+   width:50vw;
+   height:70vh;
+   position:relative;
+   margin-top:100px;
+ }
 
-                xhead=plotRect(xhead.seed,y-100,100,100,"green",xhead);
-                xhead=plotRect(xhead.seed,y-200,100,200,"black",xhead);
-                xhead=plotRect(xhead.seed,y-300,150,300,"orange",xhead);
-                xhead=plotRect(xhead.seed,y-400,100,400,"maroon",xhead);
+ .collage_piece{
+   overflow:hidden;
+   position:absolute;
+   box-sizing:border-box;
+   background-repeat: no-repeat;
+ }
 
-                xhead=plotRect(xhead.seed,y-100,100,100,"green",xhead);
-                xhead=plotRect(xhead.seed,y-200,100,200,"black",xhead);
-                xhead=plotRect(xhead.seed,y-300,150,300,"orange",xhead);
-                xhead=plotRect(xhead.seed,y-400,100,400,"maroon",xhead);
+ .level_1{
+   z-index:1;
+   -webkit-box-shadow: 0px 0px 16px 0px rgba(0,0,0,0.55);
+   -moz-box-shadow: 0px 0px 16px 0px rgba(0,0,0,0.55);
+   box-shadow: 0px 0px 16px 0px rgba(0,0,0,0.55);
+ }
+ .level_2{
+   z-index:2;
+   -webkit-box-shadow: 0px 0px 16px 6px rgba(0,0,0,0.24);
+   -moz-box-shadow: 0px 0px 16px 6px rgba(0,0,0,0.24);
+   box-shadow: 0px 0px 16px 6px rgba(0,0,0,0.24);
+ }
 
-                xhead=plotRect(xhead.seed,y-100,100,100,"green",xhead);
-                xhead=plotRect(xhead.seed,y-200,100,200,"black",xhead);
-                xhead=plotRect(xhead.seed,y-300,150,300,"orange",xhead);
-                xhead=plotRect(xhead.seed,y-400,100,400,"maroon",xhead);
+ .link{
+   color:grey;
+   display:inline-block;
+   position:absolute;
+   bottom:30px;
+   right:30px;
+   text-decoration:none;
+ }
+ body{
+ 	margin:0;
+ 	padding:0;
+ 	font-family:"arial",heletica,sans-serif;
+ 	font-size:12px;
+     background: #2980b9 url('https://static.tumblr.com/03fbbc566b081016810402488936fbae/pqpk3dn/MRSmlzpj3/tumblr_static_bg3.png') repeat 0 0;
+ 	-webkit-animation: 10s linear 0s normal none infinite animate;
+ 	-moz-animation: 10s linear 0s normal none infinite animate;
+ 	-ms-animation: 10s linear 0s normal none infinite animate;
+ 	-o-animation: 10s linear 0s normal none infinite animate;
+ 	animation: 10s linear 0s normal none infinite animate;
 
-                xhead=plotRect(xhead.seed,y-100,100,100,"green",xhead);
-                xhead=plotRect(xhead.seed,y-200,100,200,"black",xhead);
-                xhead=plotRect(xhead.seed,y-300,150,300,"orange",xhead);
-                xhead=plotRect(xhead.seed,y-400,100,400,"maroon",xhead);
+ }
 
-                xhead=plotRect(xhead.seed,y-100,100,100,"green",xhead);
-                xhead=plotRect(xhead.seed,y-200,100,200,"black",xhead);
-                xhead=plotRect(xhead.seed,y-300,150,300,"orange",xhead);
-                xhead=plotRect(xhead.seed,y-400,100,400,"maroon",xhead);
+ @-webkit-keyframes animate {
+ 	from {background-position:0 0;}
+ 	to {background-position: 500px 0;}
+ }
 
-                xhead=plotRect(xhead.seed,y-100,100,100,"green",xhead);
-                xhead=plotRect(xhead.seed,y-200,100,200,"black",xhead);
-                xhead=plotRect(xhead.seed,y-300,150,300,"orange",xhead);
+ @-moz-keyframes animate {
+ 	from {background-position:0 0;}
+ 	to {background-position: 500px 0;}
+ }
 
-                xhead=plotRect(xhead.seed,y-400,100,400,"maroon",xhead);
-                xhead=plotRect(xhead.seed,y-100,100,100,"green",xhead);
-                xhead=plotRect(xhead.seed,y-200,100,200,"black",xhead);
-                xhead=plotRect(xhead.seed,y-300,150,300,"orange",xhead);
-                xhead=plotRect(xhead.seed,y-400,100,400,"maroon",xhead);
+ @-ms-keyframes animate {
+ 	from {background-position:0 0;}
+ 	to {background-position: 500px 0;}
+ }
 
-                xhead=plotRect(xhead.seed,y-100,100,100,"green",xhead);
-                xhead=plotRect(xhead.seed,y-200,100,200,"black",xhead);
-                xhead=plotRect(xhead.seed,y-300,150,300,"orange",xhead);
-                xhead=plotRect(xhead.seed,y-400,100,400,"maroon",xhead);
+ @-o-keyframes animate {
+ 	from {background-position:0 0;}
+ 	to {background-position: 500px 0;}
+ }
 
-                xhead=plotRect(xhead.seed,y-100,100,100,"green",xhead);
-                xhead=plotRect(xhead.seed,y-200,100,200,"black",xhead);
-                xhead=plotRect(xhead.seed,y-300,150,300,"orange",xhead);
-                xhead=plotRect(xhead.seed,y-400,100,400,"maroon",xhead);
+ @keyframes animate {
+ 	from {background-position:0 0;}
+ 	to {background-position: 500px 0;}
+ }tion: fixed;
+ }
+         </style>
+     </head>
+     <body>
+         <div class="collage_container"></div>
 
-                xhead=plotRect(xhead.seed,y-100,100,100,"green",xhead);
-                xhead=plotRect(xhead.seed,y-200,100,200,"black",xhead);
-                xhead=plotRect(xhead.seed,y-300,150,300,"orange",xhead);
-                xhead=plotRect(xhead.seed,y-400,100,400,"maroon",xhead);
+         <a href="https://github.com/RohanGoyal2014/" class="link" target="_blank"style="color:white">RohanGoyal2014</a>
+     </body>
+ </html>
+ <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/1.20.2/TweenMax.min.js"></script>
+ <script>
+ var options = {
+   container:document.querySelector(".collage_container"),
+   piecesNum:50,
+   imgSrc : "images/logomain.png"
+ }
 
-                xhead=plotRect(xhead.seed,y-100,100,100,"green",xhead);
-                xhead=plotRect(xhead.seed,y-200,100,200,"black",xhead);
-                xhead=plotRect(xhead.seed,y-300,150,300,"orange",xhead);
-                xhead=plotRect(xhead.seed,y-400,100,400,"maroon",xhead);
 
-                xhead=plotRect(xhead.seed,y-100,100,100,"green",xhead);
-                xhead=plotRect(xhead.seed,y-200,100,200,"black",xhead);
-                xhead=plotRect(xhead.seed,y-300,150,300,"orange",xhead);
-                xhead=plotRect(xhead.seed,y-400,100,400,"maroon",xhead);
-                plotBaseLine();
-            }
-        </script>
-    </body>
-</html>
-<style>
-#mycanvas
-{
-    background:url('images/bg.jpg');
-    background-size: cover;
-    left:0;
-    top:0;
-    bottom:0;
-    position: fixed;
-}
-</style>
+ function ImageCollage(defaults)
+ {
+   var container = defaults.container;
+   var containerWidth = container.offsetWidth;
+   var containerHeight = container.offsetHeight;
+   var containerStyle = container.currentStyle || window.getComputedStyle(container);
+   var piecesNum = defaults.piecesNum;
+   var levelIndex = Math.floor(piecesNum * 0.75);
+   var maxsizeX = Math.round(container.offsetWidth/2);
+   var maxsizeY = Math.round(container.offsetHeight/2);
+   var offset = 15;
+   var strength = 3;
+
+   for (var i=0; i < piecesNum; i++)
+     {
+       var piece = document.createElement('div');
+       piece.className = "collage_piece";
+
+
+       if(i < levelIndex){
+         piece.classList += " level_1";
+         piece.dataset.level = 1;
+         piece.style.width = getRandomInt(100,  maxsizeX) + "px";
+         piece.style.height = getRandomInt(100, maxsizeY) + "px";
+
+       }else{
+         piece.classList += " level_2";
+         piece.dataset.level = 2;
+         piece.style.width = getRandomInt(40,  maxsizeX/2) + "px";
+         piece.style.height = getRandomInt(40, maxsizeY/2) + "px";
+       }
+
+       piece.style.backgroundImage = "url("+defaults.imgSrc+")";
+       container.appendChild(piece);
+
+       piece.dataset.offset = getRandomInt(strength, strength*2*piece.dataset.level);
+       piece.style.backgroundSize = ""+ containerWidth +"px "+ containerHeight +"px";
+       piece.style.left = getRandomInt(0, containerWidth-piece.offsetWidth) + "px";
+       piece.style.top = getRandomInt(0, containerHeight-piece.offsetHeight) + "px";
+       piece.style.backgroundPosition = -(piece.offsetLeft) + "px " + (-piece.offsetTop) + "px";
+
+       console.log(containerStyle.marginLeft, containerStyle.marginTop);
+     }
+
+   window.addEventListener("mousemove", function(e){
+     var pieces = container.querySelectorAll(".collage_piece");
+     var xpos, ypos, mouseX, mouseY, levelNum, off;
+
+
+     if (!mie) {
+         mouseX = e.pageX;
+         mouseY = e.pageY;
+     }
+     else {
+         mouseX = event.clientX + document.body.scrollLeft;
+         mouseY = event.clientY + document.body.scrollTop;
+     }
+
+     for (var p=0, l=pieces.length; p < l ; p++)
+       {
+         levelNum = pieces[p].dataset.level;
+         off = pieces[p].dataset.offset;
+         xpos = ( -mouseX/2 + containerWidth/2) / (off - levelNum);
+         ypos = ( -mouseY/2 + containerHeight/2) / (off - levelNum);
+         TweenMax.set(pieces[p],  {x:xpos, y:ypos});
+       }
+   })
+
+
+   var mie = (navigator.appName == "Microsoft Internet Explorer") ? true : false;
+   function getRandomInt(min, max) {
+       return Math.floor(Math.random() * (max - min + 1)) + min;
+   }
+ }
+
+ ImageCollage(options);
+ </script>
