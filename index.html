@@ -20,6 +20,7 @@
             position: fixed;
             left:10px;
             top:10px;
+            z-index: 9999;
             width: 60px;
             height: 60px;
             border-radius: 30px;
@@ -45,6 +46,14 @@
             font-family: monospace;
             overflow-x: hidden;
             overflow-y: auto;
+        }
+        .cover
+        {
+            background: rgba(255,128,255,0.7);
+            width: 100%;
+            margin-top:20vh;
+            height: 60vh;
+            position: absolute;
         }
         .menuentry
         {
@@ -96,20 +105,30 @@
                </div>
            </a>
        </div>
+       <div class="cover"id="hide"style="font-size:48px">
+           <br><br>
+           <center>
+               <code>Hey there!!</code><br>
+               <kbd>Welcome to my World</kbd>
+           </center>
+       </div>
+   </div><!--
        <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
        <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
-       <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+       <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>-->
     </body>
     <script>
         function PopUpMenu()
         {
             document.getElementById('menuIcon').style.display='none';
             document.getElementById('menu').style.display='block';
+            document.getElementById('hide').style.display='none';
         }
         function closemenu()
         {
             document.getElementById('menuIcon').style.display='block';
             document.getElementById('menu').style.display='none';
+            document.getElementById('hide').style.display='block';
         }
     </script>
 </html>
